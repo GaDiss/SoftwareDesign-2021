@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+    <title th:text="${toDoList.title}"></title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td><h2 th:text="${toDoList.title}"></h2></td>
+        <td><form action="/">
+            <input type="submit" th:value="Back">
+        </form></td>
+    </tr>
+</table>
+<div th:text="${toDoList.description}"></div>
+
+<h3>Add new item</h3>
+<form th:object="${toDoItem}" method="POST" action="/add-todo-item">
+    <table>
+        <tr>
+            <td><label>Label:</label></td>
+            <td><label>
+                <input type="text" th:field="*{title}"/>
+                <input type="hidden" name="listId" th:value="${toDoList.id}">
+            </label></td>
+        </tr>
+    </table>
+
+    <input type="submit" value="add">
+</form>
+
+<span th:unless="${toDoList.items.isEmpty()}">
+<h3>Todo:</h3>
+<table>
+    <th:block th:each="toDoItem : ${toDoList.items}">
+        <tr>
+            <th>
+                <form method="POST" action="/mark-todo-item">
+                    <input type="submit" th:value="${toDoItem.done ? 'V' : 'X'}">
+                    <input type="hidden" name="id" th:value="${toDoItem.id}">
+                    <input type="hidden" name="listId" th:value="${toDoList.id}">
+                    <input type="hidden" name="done" th:value="${!toDoItem.done}">
+                </form>
+          </th>
+            <td th:text="${toDoItem.title}"></td>
+        </tr>
+    </th:block>
+</table>
+</span>
+
+</body>
+</html>
