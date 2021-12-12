@@ -7,8 +7,8 @@ import java.io.InputStream
 fun main() {
     println(
         "   CALCULATOR 5000  \n" +
-                "====================\n" +
-                "Print \"quit\" to exit\n"
+        "====================\n" +
+        "Print \"quit\" to exit\n"
     )
     var expression: String
     while (readln().also { expression = it } != "quit") {
