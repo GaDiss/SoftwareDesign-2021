@@ -10,8 +10,7 @@ import java.awt.geom.Line2D
 import kotlin.system.exitProcess
 
 
-class AwtDrawing(
-) : DrawingApi {
+class AwtDrawing : DrawingApi {
     override var drawingAreaWidth: Long = 0
     override var drawingAreaHeight: Long = 0
     private val ellipses = ArrayList<Ellipse2D>()

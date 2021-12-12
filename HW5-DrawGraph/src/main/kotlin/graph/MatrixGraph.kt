@@ -5,8 +5,7 @@ import java.io.BufferedReader
 import java.util.stream.Collectors
 
 class MatrixGraph(drawingApi: DrawingApi) : Graph(drawingApi) {
-    var matrix: List<List<Boolean>>? = null
-    override var size = 0
+    private var matrix: List<List<Boolean>>? = null
 
     override fun parseGraph(reader: BufferedReader) {
         matrix = reader.lines().map(String::trim).filter(String::isNotEmpty)
@@ -20,7 +19,7 @@ class MatrixGraph(drawingApi: DrawingApi) : Graph(drawingApi) {
         for (i in 0 until size) {
             for (j in 0 .. i) {
                 if (matrix!![i][j]) {
-                    drawEdge(vertices[i], vertices[j])
+                    drawingApi.drawLine(vertices[i], vertices[j])
                 }
             }
         }

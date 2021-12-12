@@ -4,7 +4,7 @@ import graph.ListGraph
 import graph.MatrixGraph
 
 fun main(args: Array<String>) {
-    require(args.size == 3) { "Usage : [awt|javafx] [list|matrix] <fileName>" }
+    require(args.size == 3) { "Usage : awt|javafx list|matrix <fileName>" }
     val drawingApiArg = args[0]
     val graphTypeArg = args[1]
     val fileName = args[2]
@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
         "javafx" -> JavaFxDrawing()
         "awt" -> AwtDrawing()
         else -> {
-            throw IllegalArgumentException("Illegal drawing API ${drawingApiArg}")
+            throw IllegalArgumentException("Illegal drawing API $drawingApiArg")
         }
     }
 
@@ -21,7 +21,7 @@ fun main(args: Array<String>) {
         "list" -> ListGraph(drawingApi)
         "matrix" -> MatrixGraph(drawingApi)
         else -> {
-            throw IllegalArgumentException("Illegal graph type ${graphTypeArg}")
+            throw IllegalArgumentException("Illegal graph type $graphTypeArg")
         }
     }
 

@@ -9,19 +9,15 @@ import kotlin.math.sin
 
 
 abstract class Graph(
-    private val drawingApi: DrawingApi
+    internal val drawingApi: DrawingApi
 ) {
-    abstract var size: Int
-    val vertices = ArrayList<Point2D>()
+    internal var size = 0
+    internal val vertices = ArrayList<Point2D>()
 
     fun drawGraph() {
         drawVertices(size)
         drawEdges()
         drawingApi.draw()
-    }
-
-    protected open fun drawEdge(from: Point2D, to: Point2D) {
-        drawingApi.drawLine(from, to)
     }
 
     private fun drawVertices(n: Int) {
