@@ -12,13 +12,14 @@ fun main() {
     )
     var expression: String
     while (readln().also { expression = it } != "quit") {
+
         val inputStream: InputStream = expression.byteInputStream()
         val tokens = Tokenizer(inputStream).tokenize()
-        PrintVisitor(System.out).print(tokens)
-        println()
+
         val rpn = ParserVisitor().parse(tokens)
         PrintVisitor(System.out).print(rpn)
         println()
+
         println(CalcVisitor().evaluate(rpn))
     }
 }
